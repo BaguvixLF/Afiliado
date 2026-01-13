@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recomendações de Produtos</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background-color: #f5f6f8;
+      color: #333;
+    }
+
+    header {
+      background-color: #ffffff;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    header h1 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 14px;
+      color: #666;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 32px auto;
+      padding: 0 16px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background-color: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-content h2 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .card-content p {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 12px;
+      flex: 1;
+    }
+
+    .price {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 12px;
+      color: #111;
+    }
+
+    .btn {
+      text-align: center;
+      padding: 12px;
+      background-color: #009ee3;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background-color 0.2s ease;
+    }
+
+    .btn:hover {
+      background-color: #007bb5;
+    }
+
+    footer {
+      margin-top: 48px;
+      padding: 16px;
+      text-align: center;
+      font-size: 12px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Produtos Recomendados</h1>
+    <p>Selecionamos ofertas de parceiros confiáveis. Ao clicar, você será redirecionado para o site do afiliado.</p>
+  </header>
+
+  <main>
+    <section class="products" id="products"></section>
+  </main>
+
+  <footer>
+    Este site utiliza links de afiliado. Podemos receber comissão sem custo adicional para você.
+  </footer>
+
+  <script>
+    const products = [
+      {
+        name: "Fone de Ouvido Bluetooth",
+        description: "Som de alta qualidade, bateria de longa duração e conexão rápida.",
+        price: "R$ 199,90",
+        image: "https://images.unsplash.com/photo-1518444028785-8fbb9c9b41d3",
+        link: "https://www.mercadopago.com.br/exemplo1"
+      },
+      {
+        name: "Smartwatch Esportivo",
+        description: "Monitore sua saúde, atividades físicas e notificações.",
+        price: "R$ 299,90",
+        image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30",
+        link: "https://www.mercadopago.com.br/exemplo2"
+      },
+      {
+        name: "Caixa de Som Portátil",
+        description: "Som potente, resistente à água e ideal para qualquer ambiente.",
+        price: "R$ 249,90",
+        image: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf",
+        link: "https://www.mercadopago.com.br/exemplo3"
+      }
+    ];
+
+    const container = document.getElementById("products");
+
+    products.forEach(product => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.onclick = () => window.location.href = product.link;
+
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.name}">
+        <div class="card-content">
+          <h2>${product.name}</h2>
+          <p>${product.description}</p>
+          <div class="price">${product.price}</div>
+          <a class="btn" href="${product.link}">Ver oferta</a>
+        </div>
+      `;
+
+      container.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>
